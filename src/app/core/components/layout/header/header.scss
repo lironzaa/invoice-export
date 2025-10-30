@@ -1,0 +1,27 @@
+mat-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-m);
+  background-color: var(--mat-sys-primary) !important;
+  color: var(--mat-sys-on-primary) !important;
+
+  .brand {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--mat-sys-on-primary);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: var(--spacing-s);
+
+    a {
+      color: var(--mat-sys-on-primary);
+
+      &.active {
+        background-color: var(--color-white-overlay);
+      }
+    }
+  }
+}

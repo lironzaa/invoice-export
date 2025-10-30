@@ -1,0 +1,70 @@
+<form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+  <p>Invoice Form :</p>
+  <div class="mb-4">
+    <app-text-input
+      [label]="'Full Name'"
+      [formControl]="invoiceForm.controls.fullName"
+      [name]="'fullName'"
+      [isFormSubmitted]="isFormSubmitted()"
+      [customErrorMessages]="invoiceFormCustomErrorsData().fullName"
+    />
+  </div>
+  <div class="mb-4">
+    <app-text-input
+      [type]="'email'"
+      [label]="'Email'"
+      [formControl]="invoiceForm.controls.email"
+      [name]="'email'"
+      [isFormSubmitted]="isFormSubmitted()"
+    />
+  </div>
+  <div class="mb-4">
+    <app-text-input
+      [label]="'Phone'"
+      [formControl]="invoiceForm.controls.phone"
+      [name]="'phone'"
+      [isFormSubmitted]="isFormSubmitted()"
+    />
+  </div>
+  <div class="mb-4">
+    <app-text-input
+      [label]="'Invoice Number'"
+      [formControl]="invoiceForm.controls.invoiceNumber"
+      [name]="'invoiceNumber'"
+      [isFormSubmitted]="isFormSubmitted()"
+      [customErrorMessages]="invoiceFormCustomErrorsData().invoiceNumber"
+    />
+  </div>
+  <div class="mb-4">
+    <app-number-input
+      [label]="'Amount'"
+      [formControl]="invoiceForm.controls.amount"
+      [name]="'amount'"
+      [isFormSubmitted]="isFormSubmitted()"
+    />
+  </div>
+  <div class="mb-4">
+    <app-date-input
+      [label]="'Date'"
+      [formControl]="invoiceForm.controls.date"
+      [name]="'date'"
+      [isFormSubmitted]="isFormSubmitted()"
+    />
+  </div>
+  <div class="mb-4">
+    <app-signature-pad
+      [label]="'Signature'"
+      [formControl]="invoiceForm.controls.signature"
+      [name]="'signature'"
+      [isFormSubmitted]="isFormSubmitted()"
+    />
+  </div>
+  <app-button
+    [text]="'Create'"
+    [color]="'primary'"
+    [variant]="'flat'"
+    [type]="'submit'"
+    [isDisabled]="!invoiceForm.valid"
+  />
+  <!--  [isDisabled]="isLoading()"-->
+</form>

@@ -1,0 +1,27 @@
+@if (control()) {
+  <div class="signature-field" [ngClass]="formFieldClass()">
+    @if (label()) {
+      <label class="signature-label">{{ label() }}</label>
+    }
+    <div class="signature-container">
+      <canvas #signatureCanvas></canvas>
+      <button
+        mat-icon-button
+        type="button"
+        class="clear-button"
+        (click)="clear()"
+        [disabled]="control().disabled"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+    <div class="signature-error">
+      <app-error-input
+        [control]="control()"
+        [controlName]="name()"
+        [customErrorMessages]="customErrorMessages()"
+        [isFormSubmitted]="isFormSubmitted()"
+      ></app-error-input>
+    </div>
+  </div>
+}
