@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 
 import { ErrorInput } from './error-input';
 
@@ -8,12 +9,16 @@ describe('ErrorInput', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [ErrorInput]
-})
-    .compileComponents();
-    
+      imports: [ ErrorInput ]
+    })
+      .compileComponents();
+
     fixture = TestBed.createComponent(ErrorInput);
     component = fixture.componentInstance;
+
+    fixture.componentRef.setInput('control', new FormControl());
+    fixture.componentRef.setInput('controlName', 'testControl');
+
     fixture.detectChanges();
   });
 

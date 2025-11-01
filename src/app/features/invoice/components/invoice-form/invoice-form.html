@@ -1,4 +1,4 @@
-<form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="invoiceForm" #invoiceFormDirective="ngForm" (ngSubmit)="onSubmit()">
   <p>Invoice Form :</p>
   <div class="mb-4">
     <app-text-input
@@ -60,11 +60,10 @@
     />
   </div>
   <app-button
-    [text]="'Create'"
+    [text]="isSubmitting() ? 'Submitting...' : 'Create'"
     [color]="'primary'"
     [variant]="'flat'"
     [type]="'submit'"
-    [isDisabled]="!invoiceForm.valid"
+    [isDisabled]="!invoiceForm.valid || isSubmitting()"
   />
-  <!--  [isDisabled]="isLoading()"-->
 </form>

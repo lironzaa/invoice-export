@@ -2,6 +2,7 @@
 @use 'app/scss/colors';
 @use 'app/scss/spacing';
 @use 'app/scss/typography';
+@use 'ngx-toastr/toastr';
 
 @import '@angular/material/prebuilt-themes/azure-blue.css';
 

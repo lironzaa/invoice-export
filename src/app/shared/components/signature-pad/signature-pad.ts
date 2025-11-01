@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, forwardRef, input, viewChild, ElementRef, AfterViewInit, OnDestroy, effect } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
-import { MatIconButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
 import SignaturePadLib from 'signature_pad';
 
 import { ControlValueAccessorDirective } from '../../directives/input.directive';
@@ -25,8 +24,7 @@ import { CustomErrorMessages } from '../../types/inputs/error-input/custom-error
     ReactiveFormsModule,
     NgClass,
     ErrorInput,
-    MatIconButton,
-    MatIcon,
+    MatButton,
   ],
 })
 export class SignaturePad extends ControlValueAccessorDirective<string | null> implements AfterViewInit, OnDestroy {
@@ -39,6 +37,14 @@ export class SignaturePad extends ControlValueAccessorDirective<string | null> i
   canvasHeight = input<number>(200);
 
   canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>('signatureCanvas');
+
+  private readonly signaturePadOptions = {
+    minWidth: 1,
+    maxWidth: 3,
+    backgroundColor: 'rgb(255, 255, 255)',
+    penColor: 'rgb(0, 0, 0)'
+  };
+  private readonly imageFormat = 'image/png';
 
   private signaturePadInstance: SignaturePadLib | null = null;
   private pendingValue: string | null = null;
@@ -82,12 +88,7 @@ export class SignaturePad extends ControlValueAccessorDirective<string | null> i
 
     this.setupCanvas(canvas);
 
-    this.signaturePadInstance = new SignaturePadLib(canvas, {
-      minWidth: 1,
-      maxWidth: 3,
-      backgroundColor: 'rgb(255, 255, 255)',
-      penColor: 'rgb(0, 0, 0)',
-    });
+    this.signaturePadInstance = new SignaturePadLib(canvas, this.signaturePadOptions);
 
     this.signaturePadInstance.addEventListener('endStroke', () => {
       this.onDrawEnd();
@@ -146,7 +147,7 @@ export class SignaturePad extends ControlValueAccessorDirective<string | null> i
     }
 
     const isEmpty = this.signaturePadInstance.isEmpty();
-    const dataURL = isEmpty ? null : this.signaturePadInstance.toDataURL('image/png');
+    const dataURL = isEmpty ? null : this.signaturePadInstance.toDataURL(this.imageFormat);
 
     this.control().setValue(dataURL);
     this.onBlur();

@@ -6,13 +6,13 @@
     <div class="signature-container">
       <canvas #signatureCanvas></canvas>
       <button
-        mat-icon-button
+        mat-button
         type="button"
         class="clear-button"
         (click)="clear()"
         [disabled]="control().disabled"
       >
-        <mat-icon>clear</mat-icon>
+        Clear Signature
       </button>
     </div>
     <div class="signature-error">

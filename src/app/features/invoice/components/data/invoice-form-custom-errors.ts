@@ -5,6 +5,7 @@ export const InvoiceFormCustomErrorsData: InvoiceFormCustomErrorsInterface = {
     required: 'Full name is required field'
   },
   invoiceNumber: {
-    required: 'Invoice number is required field'
+    required: 'Invoice number is required field',
+    pattern: 'Invoice number format is invalid',
   },
 }

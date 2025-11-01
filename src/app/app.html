@@ -1,4 +1,7 @@
 <app-header />
 <main class="main-content">
   <router-outlet />
+  @if (isLoading()) {
+    <app-spinner [size]="SpinnerEnum.XL"></app-spinner>
+  }
 </main>
